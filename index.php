@@ -1,39 +1,22 @@
-<?php
-include_once 'includes/db.php';
-?>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Customers</title>
-  <meta charset="UTF-8">
+	<title>LOGIN</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <h1>Customers</h1>
-<?php
-$serverName = "PurdueGlobal-jv\SQLEXPRESS";
-$database = "Northwind";
-$uid = "";
-$pass = "";
+     <form action="login.php" method="post">
+     	<h2>LOGIN</h2>
+     	<?php if (isset($_GET['error'])) { ?>
+     		<p class="error"><?php echo $_GET['error']; ?></p>
+     	<?php } ?>
+     	<label>User Name</label>
+     	<input type="text" name="uname" placeholder="User Name"><br>
 
-$db = new Database($serverName, $database, $uid, $pass);
+     	<label>User Name</label>
+     	<input type="password" name="password" placeholder="Password"><br>
 
-$numberOfCustomers = $db->getNumberOfCustomers();
-$customerLastNames = $db->getCustomerLastNames();
-
-        if(isset($_POST['button1'])) {
-            echo "Number of customers: " . $numberOfCustomers . "<br><br>";
-        }
-        if(isset($_POST['button2'])) {
-            echo "Customer names: <br>" . implode(", ", $customerLastNames);
-        }
-?>
-     
-    <form method="post">
-        <input type="submit" name="button1"
-                value="How many customers are there"/>
-         
-        <input type="submit" name="button2"
-                value="Display names of customers"/>
-    </form>
+     	<button type="submit">Login</button>
+     </form>
 </body>
 </html>
